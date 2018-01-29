@@ -1,5 +1,4 @@
 body{
-  font-family: 'Roboto', sans-serif;
   background-color: #84FF00;
   font-size: 18px;
   margin: 0;
@@ -7,3 +6,33 @@ body{
   color: #000000;
   box-sizing: border-box;
 }
+p{
+	margin: 0;
+}
+.grid{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"app";
+	border: 1px solid black;
+}
+
+#app{
+	grid-area: app;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-areas: 
+	"inicio inicio inicio inicio inicio"
+	". . input . ."
+	". . prueba . ."
+	". razas razas razas .";
+}
+
+.inicio{grid-area: inicio;}
+
+.campotext{grid-area: input;}
+
+.prueba{grid-area: prueba;}
+
+.lista{grid-area: razas;}
