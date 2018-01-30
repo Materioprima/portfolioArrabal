@@ -9,18 +9,23 @@
   	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   	crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
 </head>
 <body>
 	<div class="grid">
 		<div id="app">
-			<h1 class="inicio" v-on:click="boton">Bienvenido a mi portfolio</h1>
+			<h1 class="inicio">Bienvenido a mi portfolio</h1>
 			<input type="text" v-model="buscador" class="campotext" placeholder="Escribe una raza de perro">
-			<p class="prueba">{{buscador}}</p>
-			<ul class="lista">
-				<li v-for="article in filtroraza">
+			<button class="moar" v-on:click="boton">Dame perritos</button>
+			<button class="minus" v-on:click="limpiar">Borra los perritos</button>
+			<div class="lista">
+				<div v-for="article in filtroraza" class="raza">
 					<p>{{article}}</p>
-				</li>
-			</ul>
+				</div>
+			</div>
+			<div class="fotitos">
+				<img v-for="article in url" v-bind:src="article" alt="" class="foto">
+			</div>
 		</div>
 	</div>
 	<script src="hacks.js" type="text/javascript" charset="utf-8" async defer></script>

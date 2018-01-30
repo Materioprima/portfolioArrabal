@@ -24,9 +24,9 @@ p{
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-areas: 
 	"inicio inicio inicio inicio inicio"
-	". . input . ."
-	". . prueba . ."
-	". razas razas razas .";
+	". input botonadd botonclr ."
+	"razas razas razas razas razas"
+	"fotos fotos fotos fotos fotos";
 }
 
 .inicio{grid-area: inicio;}
@@ -35,4 +35,31 @@ p{
 
 .prueba{grid-area: prueba;}
 
-.lista{grid-area: razas;}
+.moar{grid-area: botonadd;}
+
+.minus{grid-area: botonclr;}
+
+.lista{
+	grid-area: razas;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	border: 1px solid black;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.raza{
+	cursor:pointer;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.raza:hover{
+	background-color: gray;
+}
+
+.fotitos{grid-area: fotos;}
+
+.foto{
+	height: 350px;
+	width: auto;
+}

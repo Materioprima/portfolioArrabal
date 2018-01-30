@@ -2,8 +2,14 @@ var app = new Vue({
 	el:'#app',	
 	data: {
 		buscador: '',
-		razas: []
+		razas: [],
+		cont: '0',
+		url: []
 	},
+	mounted() {
+    	axios.get("https://dog.ceo/api/breeds/list")
+    	.then(response => {this.razas = response.data.message})
+  	},
 	computed: {
 		filtroraza: function(){
 			var razasdat = this.razas,
@@ -27,9 +33,27 @@ var app = new Vue({
 	},
 	methods: {
 		boton: function(){
-			console.log(this.razas);
-			var hola="k tal";
-			this.razas.push(hola);
+			console.log(this.filtroraza);
+			this.url=[];
+			do{
+				if(this.filtroraza.length<5){
+					for (var i = 0; i < 5; i++) {
+						axios.get("https://dog.ceo/api/breed/"+this.filtroraza[this.cont]+"/images/random").then(response =>{this.url.push(response.data.message)});
+					}
+				}else if(this.filtroraza.length<10){
+					for (var i = 0; i < 3; i++) {
+						axios.get("https://dog.ceo/api/breed/"+this.filtroraza[this.cont]+"/images/random").then(response =>{this.url.push(response.data.message)});
+					}
+				}else{
+					axios.get("https://dog.ceo/api/breed/"+this.filtroraza[this.cont]+"/images/random").then(response =>{this.url.push(response.data.message)});
+				}
+				this.cont++;
+			}while(this.cont<this.filtroraza.length);
+			this.cont='0';
+			console.log(this.url);
+		},
+		limpiar: function(){
+			this.url=[];
 		}
 	}
 });
