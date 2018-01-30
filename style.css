@@ -27,6 +27,7 @@ p{
 	". input botonadd botonclr ."
 	"razas razas razas razas razas"
 	"fotos fotos fotos fotos fotos";
+	grid-row-gap: 10px;
 }
 
 .inicio{grid-area: inicio;}
@@ -62,4 +63,28 @@ p{
 .foto{
 	height: 350px;
 	width: auto;
+	grid-area: imagenperro;
+	cursor: pointer;
+}
+.foto:hover{
+	filter: brightness(150%) saturate(2);
+}
+.containfoto{
+	height: 370px;
+	overflow: hidden;
+	display: inline-grid;
+	grid-template-rows: 1fr 0.25fr;
+	grid-template-areas: "imagenperro imagenperro" "botong botonf";
+	margin: 0 10px 10px 0;
+	border-radius: 10px;
+}
+
+.peque1{
+	height: 20px;
+	grid-area: botong;
+}
+
+.peque2{
+	height: 20px;
+	grid-area: botonf;
 }

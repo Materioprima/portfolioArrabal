@@ -24,7 +24,11 @@
 				</div>
 			</div>
 			<div class="fotitos">
-				<img v-for="article in url" v-bind:src="article" alt="" class="foto">
+				<div class="containfoto" v-for="article in url">
+					<img v-bind:src="article" alt="" class="foto">
+					<button class="peque">Guardar</button>
+					<button class="peque">Favorita</button>
+				</div>
 			</div>
 		</div>
 	</div>
