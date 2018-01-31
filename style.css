@@ -82,9 +82,17 @@ p{
 .peque1{
 	height: 20px;
 	grid-area: botong;
+	cursor: pointer;
+}
+.peque1:hover{
+	background-color: blue;
 }
 
 .peque2{
 	height: 20px;
 	grid-area: botonf;
+	cursor: pointer;
+}
+.peque2:hover{
+	background-color:yellow;
 }

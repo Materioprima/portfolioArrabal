@@ -26,8 +26,8 @@
 			<div class="fotitos">
 				<div class="containfoto" v-for="article in url">
 					<img v-bind:src="article" alt="" class="foto">
-					<button class="peque">Guardar</button>
-					<button class="peque">Favorita</button>
+					<button class="peque1" v-on:click="descargar(article)">Guardar</button>
+					<button class="peque2" v-on:click="favoritos(article)">Favorita</button>
 				</div>
 			</div>
 		</div>

@@ -4,7 +4,8 @@ var app = new Vue({
 		buscador: '',
 		razas: [],
 		cont: '0',
-		url: []
+		url: [],
+		favs: localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
 	},
 	mounted() {
     	axios.get("https://dog.ceo/api/breeds/list")
@@ -54,6 +55,17 @@ var app = new Vue({
 		},
 		limpiar: function(){
 			this.url=[];
+		},
+		descargar: function(uri, name) {
+		    var link = document.createElement("a");
+		    link.download = name;
+		    link.href = uri;
+		    link.click();
+		},
+		favoritos: function(uri) {
+			this.favs.push(uri);
+			localStorage.setItem('items', JSON.stringify(this.favs));
+			const data = JSON.parse(localStorage.getItem('items'));
 		}
 	}
 });
