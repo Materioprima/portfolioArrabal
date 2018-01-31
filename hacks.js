@@ -5,7 +5,10 @@ var app = new Vue({
 		razas: [],
 		cont: '0',
 		url: [],
-		favs: localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+		filtrofavs: true,
+		filtroaumentar: false,
+		imagenaumentada: '',
+		favs: localStorage.getItem('perros') ? JSON.parse(localStorage.getItem('perros')) : []
 	},
 	mounted() {
     	axios.get("https://dog.ceo/api/breeds/list")
@@ -30,6 +33,13 @@ var app = new Vue({
 
             // Return an array with the filtered data.
             return razasdat;
+		},
+		togglefav: function(){
+			if(!this.filtrofavs){
+				return 'chosen';
+			}else{
+				return '';
+			}
 		}
 	},
 	methods: {
@@ -63,9 +73,46 @@ var app = new Vue({
 		    link.click();
 		},
 		favoritos: function(uri) {
-			this.favs.push(uri);
-			localStorage.setItem('items', JSON.stringify(this.favs));
-			const data = JSON.parse(localStorage.getItem('items'));
+			var found=false;
+			for (var i = 0; i < this.favs.length; i++) {
+				if(this.favs[i][0]==uri){
+					found=true;
+					console.log("valor encontrado"+this.favs[i][0]+" toma: "+uri);
+					this.favs.splice(i,1);
+					localStorage.setItem('perros', JSON.stringify(this.favs));
+				}
+			}
+			if(!found){
+				var perrazo=[uri,true];
+				this.favs.push(perrazo);
+				localStorage.setItem('perros', JSON.stringify(this.favs));
+				const data = JSON.parse(localStorage.getItem('perros'));
+				console.log(this.favs);
+			}
+		},
+		favos: function(){
+			this.filtrofavs= !this.filtrofavs;
+		},
+		limpiarfavs: function(){
+			this.favs=[];
+			localStorage.clear();
+		},
+		chosen: function(urlfot, valorfav){
+			if(valorfav){
+				return 'chosen';
+			}else{
+				for (var i = 0; i < this.favs.length; i++) {
+				if(this.favs[i][0]==urlfot){
+					console.log(this.favs[i][0]+" "+urlfot);
+					return 'chosen';
+				}
+			}
+				return '';
+			}
+		},
+		aumentar: function(urlimg){
+			this.filtroaumentar= !this.filtroaumentar;
+			this.imagenaumentada=urlimg;
 		}
 	}
 });

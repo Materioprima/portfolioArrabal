@@ -14,21 +14,33 @@
 <body>
 	<div class="grid">
 		<div id="app">
-			<h1 class="inicio">Bienvenido a mi portfolio</h1>
-			<input type="text" v-model="buscador" class="campotext" placeholder="Escribe una raza de perro">
-			<button class="moar" v-on:click="boton">Dame perritos</button>
-			<button class="minus" v-on:click="limpiar">Borra los perritos</button>
-			<div class="lista">
-				<div v-for="article in filtroraza" class="raza">
-					<p>{{article}}</p>
+			<div class="contenido" v-if="!filtroaumentar">
+				<h1 class="inicio">Bienvenido a mi portfolio</h1>
+				<input type="text" v-model="buscador" class="campotext" placeholder="Escribe una raza de perro">
+				<button class="moar" v-on:click="boton">Dame perritos</button>
+				<button class="minus" v-on:click="limpiar">Borra los perritos</button>
+				<button class="favs" v-bind:class="togglefav" v-on:click="favos">Favoritos</button>
+				<button class="clrfavs" v-on:click="limpiarfavs">Limpia favoritos</button>
+				<div class="lista">
+					<div v-for="article in filtroraza" class="raza">
+						<p>{{article}}</p>
+					</div>
+				</div>
+				<div class="fotitos">
+					<div class="containfoto" v-for="article in url" v-if="filtrofavs">
+						<img v-bind:src="article" alt="" class="foto" v-on:click="aumentar(article)">
+						<button class="peque1" v-on:click="descargar(article)">Guardar</button>
+						<button class="peque2" v-bind:class="chosen(article,false)" v-on:click="favoritos(article)">Favorita</button>
+					</div>
+					<div class="containfoto" v-for="article in favs" v-if="!filtrofavs">
+						<img v-bind:src="article[0]" alt="" class="foto" v-on:click="aumentar(article[0])">
+						<button class="peque1" v-on:click="descargar(article[0])">Guardar</button>
+						<button class="peque2" v-bind:class="chosen(article[0],article[1])" v-on:click="favoritos(article[0])">Favorita</button>
+					</div>
 				</div>
 			</div>
-			<div class="fotitos">
-				<div class="containfoto" v-for="article in url">
-					<img v-bind:src="article" alt="" class="foto">
-					<button class="peque1" v-on:click="descargar(article)">Guardar</button>
-					<button class="peque2" v-on:click="favoritos(article)">Favorita</button>
-				</div>
+			<div class="aumentado" v-if="filtroaumentar">
+				<img v-bind:src="imagenaumentada" alt="" class="foto" v-on:click="aumentar(imagenaumentada)">
 			</div>
 		</div>
 	</div>

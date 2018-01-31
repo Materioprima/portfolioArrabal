@@ -13,18 +13,28 @@ p{
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-areas:
-	"app";
+	"contenido";
 	border: 1px solid black;
 }
-
-#app{
-	grid-area: app;
+.aumentado{
+	grid-area: contenido;
+	background-color: #38373760;
+	height: 100vh;
+	display: flex;
+}
+.aumentado>img{
+	height: auto;
+	width: auto;
+	margin: auto;
+}
+.contenido{
+	grid-area: contenido;
 	text-align: center;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-template-areas: 
 	"inicio inicio inicio inicio inicio"
-	". input botonadd botonclr ."
+	"input botonadd botonclr favorites clrfavs"
 	"razas razas razas razas razas"
 	"fotos fotos fotos fotos fotos";
 	grid-row-gap: 10px;
@@ -39,6 +49,10 @@ p{
 .moar{grid-area: botonadd;}
 
 .minus{grid-area: botonclr;}
+
+.favs{grid-area: favorites;}
+
+.clrfavs{grid-area: clrfavs;}
 
 .lista{
 	grid-area: razas;
@@ -95,4 +109,8 @@ p{
 }
 .peque2:hover{
 	background-color:yellow;
+}
+
+.chosen{
+	background-color: yellow;
 }
