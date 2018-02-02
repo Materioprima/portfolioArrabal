@@ -1,5 +1,5 @@
 body{
-  background-color: #84FF00;
+  background: url(2.png);
   font-size: 18px;
   margin: 0;
   padding: 0;
@@ -40,7 +40,7 @@ p{
 	grid-row-gap: 10px;
 }
 
-.inicio{grid-area: inicio;}
+.inicio{grid-area: inicio;background-color: #80808080;}
 
 .campotext{grid-area: input;}
 
@@ -61,6 +61,7 @@ p{
 	border: 1px solid black;
 	border-radius: 10px;
 	overflow: hidden;
+	background-color: #B68F30;
 }
 .raza{
 	cursor:pointer;
